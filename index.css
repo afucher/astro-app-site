@@ -3,6 +3,9 @@
     margin: 0 auto;
     max-width: 1128px;
     min-width: 60vw;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 header {
@@ -13,20 +16,20 @@ header {
 
 .headerContent {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .headerContent > img {
-    width: 500px;
-    margin-left: 10px;
+    max-width: 500px;
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
 }
 
 .headerContent > div {
-    width: 488px;
+    max-width: 488px;
     margin-right: 60px;
+    display: inline-block;
 }
 
 .headerContent  p {
