@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css" />
+    <script src="./AstroService.js"></script>
+    <script src="./astrochart.min.js"></script>
     <title>AstroZ</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
             </div>
         </div>
     </header>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
+    <svg class="triangulo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
         <polygon points="100 0 100 10 0 10" style="fill:white" />
       </svg>
     <main>
@@ -30,5 +32,29 @@
             <a class="form-button" target="_blank" href="https://forms.gle/R5GoHPneBnPPAKWr5">Tenho interesse</a>
         </div>
     </main>
+    <div id="paper"></div>
+    <script type="text/javascript"> 
+
+                                                  
+        window.onload = function () {     
+            AstroService.ObterAstros().then(response => {
+                let data = {};
+                data.planets = response.astros.reduce((prev, next) => {
+                    prev[next.astro.nome] = [next.astro.graus];
+                    return prev;
+                }, {});
+                data.cusps = response.casas.casas;
+                
+                var radix = new astrology.Chart('paper', 600, 600).radix( data );
+                // Aspect calculation
+                // default is planet to planet, but it is possible add some important points:				
+                radix.addPointsOfInterest( {"As":[data.cusps[0]],"Ic":[data.cusps[3]],"Ds":[data.cusps[6]],"Mc":[data.cusps[9]]});				
+                radix.aspects();
+            });
+            
+                            
+											
+        };
+    </script>		
 </body>
 </html>
