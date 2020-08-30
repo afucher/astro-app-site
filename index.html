@@ -29,20 +29,28 @@
       </svg>
     <main>
         <div class="container">
+            <div id="astro-header">
+                <span>Data: <span id="data">--/--/--</span></span>
+                <span>Horário: <span id="hora">--:--:--</span></span>
+                <select name="local" id="local" onchange="calculaMapa()">
+                    <option value="sp">São Paulo</option>
+                    <option value="rj">Rio de Janeiro</option>
+                    <option value="cuiaba">Cuiabá</option>
+                  </select>
+            </div>
+            <div id="paper"></div>
             <a class="form-button" target="_blank" href="https://forms.gle/R5GoHPneBnPPAKWr5">Tenho interesse</a>
         </div>
     </main>
-    <div>
-        <div id="astro-header">
-            <p>Data: <span id="data">--/--/--</span></p>
-            <p>Horário: <span id="hora">--:--:--</span></p>
-        </div>
-        <div id="paper"></div>
+    <div class="container">
+    
     </div>
     <script type="text/javascript"> 
         function calculaMapa() {
             const date = new Date();
-            AstroService.ObterAstros(date.toISOString()).then(response => {
+            document.getElementById('paper').innerHTML = '';
+            const local = document.getElementById('local').value;
+            AstroService.ObterAstros(date.toISOString(), local).then(response => {
                 document.getElementById('data').innerText = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
                 document.getElementById('hora').innerText = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
                 let data = {};
@@ -55,7 +63,7 @@
                 var radix = new astrology.Chart('paper', 600, 600).radix( data );
                 // Aspect calculation
                 // default is planet to planet, but it is possible add some important points:				
-                radix.addPointsOfInterest( {"As":[data.cusps[0]],"Ic":[data.cusps[3]],"Ds":[data.cusps[6]],"Mc":[data.cusps[9]]});				
+                radix.addPointsOfInterest( {"ASC":[response.casas.ascendente],"Mc":[response.casas.meioDoCeu]});				
                 radix.aspects();
             });
             
