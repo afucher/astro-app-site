@@ -80,3 +80,7 @@ a.form-button:hover {
     min-height: 600px;
     text-align: center;
 }
+
+#paper > svg {
+    max-width: 100%;
+}
