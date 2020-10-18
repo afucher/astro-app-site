@@ -58,7 +58,7 @@
                     prev[next.astro.nome] = [next.astro.graus];
                     return prev;
                 }, {});
-                data.cusps = response.casas.casas;
+                data.cusps = response.cuspides.casas;
 
                 var radix = new astrology.Chart('paper', 600, 600).radix( data );
                 // Aspect calculation
