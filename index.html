@@ -90,7 +90,7 @@
               <p class="leading-normal text-2xl mb-8">
                 Uma plataforma, várias experiências. Estude, trabalhe, atenda, pesquise!
               </p>
-              <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <button id="first-action" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 Se inscreva
               </button>
             </div>
@@ -576,6 +576,17 @@
               navcontent.classList.add("bg-gray-100");
             }
           });
+        </script>
+         <script>
+          const navAction = document.getElementById("navAction");
+          const firstCallToAction = document.getElementById("first-action");
+          const callToAction = document.getElementById("btn-call-to-action");
+          
+          const abreFormulario = () => window.open("https://forms.gle/R5GoHPneBnPPAKWr5", "_blank")
+          
+          firstCallToAction.onclick = abreFormulario
+          navAction.onclick = abreFormulario
+          callToAction.onclick = abreFormulario
         </script>
         <script>
           /*Toggle dropdown list*/
